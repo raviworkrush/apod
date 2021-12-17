@@ -25,7 +25,9 @@ class _TodayPicturePageState extends State<TodayPicturePage> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: const Text("Today's Astronomy Picture"),
+        title: const Text("Today's Picture"),
+        elevation: 0,
+        backgroundColor: Colors.transparent,
       ),
       body: BlocConsumer<TodaysPictureCubit, TodaysPictureState>(
         listener: (context, state) {
@@ -35,9 +37,7 @@ class _TodayPicturePageState extends State<TodayPicturePage> {
         },
         builder: (context, state) {
           if (state is TodaysPictureLoading) {
-            return const Loading(
-              eventName: "Today's Picture loading...",
-            );
+            return const Loading();
           } else if (state is TodaysPictureLoaded) {
             return DataWidget(
               state: state,

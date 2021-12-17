@@ -24,11 +24,11 @@ class TodaysPictureCubit extends Cubit<TodaysPictureState> {
     }
   }
 
-  Future<void> getParticulerDatePicture(String date) async {
+  Future<void> getParticularDatePicture(String date) async {
     emit(TodaysPictureLoading());
     try {
       final Map<String, dynamic> _apiResponse =
-          await APIService.getParticulerDatePicture(date);
+          await APIService.getParticularDatePicture(date);
       if (_apiResponse['status'] == true) {
         final Model data = _apiResponse['data'];
         emit(TodaysPictureLoaded(data: data));

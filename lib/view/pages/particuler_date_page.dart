@@ -5,19 +5,19 @@ import 'package:apod/view/widgets/loading.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 
-class ParticulerPicturePage extends StatefulWidget {
+class ParticularPicturePage extends StatefulWidget {
   final String date;
-  const ParticulerPicturePage({Key? key, required this.date}) : super(key: key);
+  const ParticularPicturePage({Key? key, required this.date}) : super(key: key);
 
   @override
-  State<ParticulerPicturePage> createState() => _ParticulerPicturePageState();
+  State<ParticularPicturePage> createState() => _ParticularPicturePageState();
 }
 
-class _ParticulerPicturePageState extends State<ParticulerPicturePage> {
+class _ParticularPicturePageState extends State<ParticularPicturePage> {
   @override
   void initState() {
     BlocProvider.of<TodaysPictureCubit>(context)
-        .getParticulerDatePicture(widget.date)
+        .getParticularDatePicture(widget.date)
         .whenComplete(() => null);
     super.initState();
   }
@@ -26,7 +26,9 @@ class _ParticulerPicturePageState extends State<ParticulerPicturePage> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: Text("${widget.date} Astronomy Picture"),
+        title: const Text("Astronomy Picture"),
+        elevation: 0,
+        backgroundColor: Colors.transparent,
       ),
       body: BlocConsumer<TodaysPictureCubit, TodaysPictureState>(
         listener: (context, state) {
@@ -36,9 +38,7 @@ class _ParticulerPicturePageState extends State<ParticulerPicturePage> {
         },
         builder: (context, state) {
           if (state is TodaysPictureLoading) {
-            return Loading(
-              eventName: "${widget.date} Picture loading...",
-            );
+            return const Loading();
           } else if (state is TodaysPictureLoaded) {
             return DataWidget(
               state: state,

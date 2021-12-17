@@ -11,14 +11,14 @@ class APIService {
         final Model data = modelFromJson(_apiResponse.body);
         return {'status': true, 'data': data};
       } else {
-        return {'status': false, 'error': 'Error in fetching the data'};
+        return {'status': false, 'message': 'Error in fetching the data'};
       }
     } on Exception catch (e) {
-      return {'status': false, 'error': 'Error in fetching the data\n$e'};
+      return {'status': false, 'message': 'Error in fetching the data\n$e'};
     }
   }
 
-  static Future<Map<String, dynamic>> getParticulerDatePicture(
+  static Future<Map<String, dynamic>> getParticularDatePicture(
       String date) async {
     try {
       final http.Response _apiResponse =
@@ -27,10 +27,10 @@ class APIService {
         final Model data = modelFromJson(_apiResponse.body);
         return {'status': true, 'data': data};
       } else {
-        return {'status': false, 'error': 'Error in fetching the data'};
+        return {'status': false, 'message': 'Error in fetching the data'};
       }
     } on Exception catch (e) {
-      return {'status': false, 'error': 'Error in fetching the data\n$e'};
+      return {'status': false, 'message': 'Error in fetching the data\n$e'};
     }
   }
 }

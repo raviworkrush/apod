@@ -23,15 +23,17 @@ class _MyHomePageState extends State<MyHomePage> {
           child: SingleChildScrollView(
             child: Column(
               children: [
-                Lottie.asset('assets/lotties/nasa.json'),
-                const Text("Welcome to the Astronomy Picture of the Day App",
+                Lottie.asset('assets/lotties/nasa.json',
+                    width: 200, height: 200),
+                const Text(
+                    "Welcome to the Astronomy Picture of the Day Application",
                     textAlign: TextAlign.center,
                     style:
                         TextStyle(fontSize: 24.0, fontWeight: FontWeight.bold)),
                 const SizedBox(height: 60.0),
                 ElevatedButton(
                   style: ElevatedButton.styleFrom(
-                    minimumSize: const Size(double.maxFinite, 60),
+                    minimumSize: const Size(double.maxFinite, 48.0),
                     shape: RoundedRectangleBorder(
                       borderRadius: BorderRadius.circular(8.0),
                     ),
@@ -47,14 +49,14 @@ class _MyHomePageState extends State<MyHomePage> {
                     "Today's Astronomy Picture",
                     style: TextStyle(
                       color: Colors.white,
-                      fontSize: 20.0,
+                      fontSize: 16.0,
                     ),
                   ),
                 ),
                 const SizedBox(height: 8.0),
                 ElevatedButton(
                   style: ElevatedButton.styleFrom(
-                    minimumSize: const Size(double.maxFinite, 60),
+                    minimumSize: const Size(double.maxFinite, 48.0),
                     shape: RoundedRectangleBorder(
                       borderRadius: BorderRadius.circular(8.0),
                     ),
@@ -62,109 +64,127 @@ class _MyHomePageState extends State<MyHomePage> {
                   onPressed: () {
                     showModalBottomSheet<void>(
                       context: context,
+                      backgroundColor: Colors.transparent,
                       builder: (BuildContext context) {
                         return StatefulBuilder(
                           builder: (BuildContext context,
                               void Function(void Function()) setStateSheet) {
-                            return Center(
-                              child: SingleChildScrollView(
-                                child: Column(
-                                  mainAxisAlignment: MainAxisAlignment.center,
-                                  mainAxisSize: MainAxisSize.min,
-                                  children: <Widget>[
-                                    const Text('Your Date Astronomy Picture'),
-                                    ListTile(
-                                      contentPadding: const EdgeInsets.all(8.0),
-                                      title: const Text(
-                                        'Your Date Astronomy Picture',
-                                        style: TextStyle(color: Colors.black38),
-                                      ),
-                                      subtitle: Text(_selectedDate ==
-                                              null //ternary expression to check if date is null
-                                          ? 'Please pick your Date!'
-                                          : 'Your Selected Date : ${_selectedDate!.formatMyDate()}'),
-                                      trailing: IconButton(
-                                          onPressed: () {
-                                            showDatePicker(
-                                                    context: context,
-                                                    helpText:
-                                                        'Select your date',
-                                                    fieldLabelText:
-                                                        'Select your date',
-                                                    initialDate: DateTime.now(),
-                                                    //which date will display when user open the picker
-                                                    firstDate: DateTime(1996),
-                                                    //what will be the previous supported year in picker
-                                                    lastDate: DateTime
-                                                        .now()) //what will be the up to supported date in picker
-                                                .then((pickedDate) {
-                                              //then usually do the future job
-                                              if (pickedDate == null) {
-                                                //if user tap cancel then this function will stop
-                                                return;
-                                              }
-                                              setStateSheet(() {
-                                                //for rebuilding the ui
-                                                _selectedDate = pickedDate;
-                                              });
-                                            });
-                                          },
-                                          icon: const Icon(
-                                            Icons.calendar_today,
-                                          )),
-                                    ),
-                                    _selectedDate == null
-                                        ? const SizedBox()
-                                        : ElevatedButton(
-                                            style: ElevatedButton.styleFrom(
-                                              minimumSize: const Size(
-                                                  double.maxFinite, 60),
-                                              shape: RoundedRectangleBorder(
-                                                borderRadius:
-                                                    BorderRadius.circular(8.0),
+                            return Card(
+                              elevation: 4.0,
+                              shape: RoundedRectangleBorder(
+                                borderRadius: BorderRadius.circular(16.0),
+                              ),
+                              child: Padding(
+                                padding: const EdgeInsets.all(16.0),
+                                child: Card(
+                                  child: SingleChildScrollView(
+                                    child: Column(
+                                      mainAxisAlignment:
+                                          MainAxisAlignment.center,
+                                      mainAxisSize: MainAxisSize.min,
+                                      children: <Widget>[
+                                        const Text(
+                                            'Your Date Astronomy Picture'),
+                                        ListTile(
+                                          contentPadding:
+                                              const EdgeInsets.all(8.0),
+                                          title: const Text(
+                                            'Your Date Astronomy Picture',
+                                            style: TextStyle(
+                                                color: Colors.black38),
+                                          ),
+                                          subtitle: Text(_selectedDate ==
+                                                  null //ternary expression to check if date is null
+                                              ? 'Please pick your Date!'
+                                              : 'Your Selected Date : ${_selectedDate!.formatMyDate()}'),
+                                          trailing: IconButton(
+                                              onPressed: () {
+                                                showDatePicker(
+                                                        context: context,
+                                                        helpText:
+                                                            'Select your date',
+                                                        fieldLabelText:
+                                                            'Select your date',
+                                                        initialDate:
+                                                            DateTime.now(),
+                                                        //which date will display when user open the picker
+                                                        firstDate:
+                                                            DateTime(1996),
+                                                        //what will be the previous supported year in picker
+                                                        lastDate: DateTime
+                                                            .now()) //what will be the up to supported date in picker
+                                                    .then((pickedDate) {
+                                                  //then usually do the future job
+                                                  if (pickedDate == null) {
+                                                    //if user tap cancel then this function will stop
+                                                    return;
+                                                  }
+                                                  setStateSheet(() {
+                                                    //for rebuilding the ui
+                                                    _selectedDate = pickedDate;
+                                                  });
+                                                });
+                                              },
+                                              icon: const Icon(
+                                                Icons.calendar_today,
+                                              )),
+                                        ),
+                                        _selectedDate == null
+                                            ? const SizedBox()
+                                            : ElevatedButton(
+                                                style: ElevatedButton.styleFrom(
+                                                  minimumSize: const Size(
+                                                      double.maxFinite, 48.0),
+                                                  shape: RoundedRectangleBorder(
+                                                    borderRadius:
+                                                        BorderRadius.circular(
+                                                            8.0),
+                                                  ),
+                                                ),
+                                                onPressed: () {
+                                                  Navigator.push(
+                                                      context,
+                                                      MaterialPageRoute(
+                                                          fullscreenDialog:
+                                                              true,
+                                                          builder: (context) =>
+                                                              ParticularPicturePage(
+                                                                date: _selectedDate!
+                                                                    .formatMyDate(),
+                                                              )));
+                                                },
+                                                child: Text(
+                                                  " ${_selectedDate!.formatMyDate()} Astronomy Picture",
+                                                  style: const TextStyle(
+                                                    color: Colors.white,
+                                                    fontSize: 16.0,
+                                                  ),
+                                                ),
                                               ),
-                                            ),
-                                            onPressed: () {
-                                              Navigator.push(
-                                                  context,
-                                                  MaterialPageRoute(
-                                                      fullscreenDialog: true,
-                                                      builder: (context) =>
-                                                          ParticulerPicturePage(
-                                                            date: _selectedDate!
-                                                                .formatMyDate(),
-                                                          )));
-                                            },
-                                            child: Text(
-                                              " ${_selectedDate!.formatMyDate()} Astronomy Picture",
-                                              style: const TextStyle(
-                                                color: Colors.white,
-                                                fontSize: 20.0,
-                                              ),
+                                        const SizedBox(height: 8.0),
+                                        ElevatedButton(
+                                          style: ElevatedButton.styleFrom(
+                                            minimumSize: const Size(
+                                                double.maxFinite, 48.0),
+                                            shape: RoundedRectangleBorder(
+                                              borderRadius:
+                                                  BorderRadius.circular(8.0),
                                             ),
                                           ),
-                                    const SizedBox(height: 8.0),
-                                    ElevatedButton(
-                                      style: ElevatedButton.styleFrom(
-                                        minimumSize:
-                                            const Size(double.maxFinite, 56.0),
-                                        shape: RoundedRectangleBorder(
-                                          borderRadius:
-                                              BorderRadius.circular(8.0),
+                                          onPressed: () {
+                                            Navigator.pop(context);
+                                          },
+                                          child: const Text(
+                                            "close",
+                                            style: TextStyle(
+                                              color: Colors.white,
+                                              fontSize: 16.0,
+                                            ),
+                                          ),
                                         ),
-                                      ),
-                                      onPressed: () {
-                                        Navigator.pop(context);
-                                      },
-                                      child: const Text(
-                                        "close",
-                                        style: TextStyle(
-                                          color: Colors.white,
-                                          fontSize: 20.0,
-                                        ),
-                                      ),
+                                      ],
                                     ),
-                                  ],
+                                  ),
                                 ),
                               ),
                             );
@@ -177,7 +197,7 @@ class _MyHomePageState extends State<MyHomePage> {
                     "Your Date Astronomy Picture",
                     style: TextStyle(
                       color: Colors.white,
-                      fontSize: 20.0,
+                      fontSize: 16.0,
                     ),
                   ),
                 ),

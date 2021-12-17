@@ -12,7 +12,7 @@ void showMessage(BuildContext context, String title, String message) async =>
               actions: <Widget>[
                 ElevatedButton(
                   style: ElevatedButton.styleFrom(
-                    minimumSize: const Size(double.maxFinite, 60),
+                    minimumSize: const Size(double.maxFinite, 48.0),
                     shape: RoundedRectangleBorder(
                       borderRadius: BorderRadius.circular(32.0),
                     ),
@@ -24,7 +24,7 @@ void showMessage(BuildContext context, String title, String message) async =>
                     "Okay",
                     style: TextStyle(
                       color: Colors.white,
-                      fontSize: 20.0,
+                      fontSize: 16.0,
                     ),
                   ),
                 ),
