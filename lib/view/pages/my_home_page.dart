@@ -23,14 +23,14 @@ class _MyHomePageState extends State<MyHomePage> {
           child: SingleChildScrollView(
             child: Column(
               children: [
-                Lottie.asset('assets/lotties/nasa.json',
-                    width: 200, height: 200),
+                Lottie.asset('assets/lotties/rocket.json',
+                    width: 360.0, height: 360.0),
                 const Text(
                     "Welcome to the Astronomy Picture of the Day Application",
                     textAlign: TextAlign.center,
                     style:
                         TextStyle(fontSize: 24.0, fontWeight: FontWeight.bold)),
-                const SizedBox(height: 60.0),
+                const SizedBox(height: 44.0),
                 ElevatedButton(
                   style: ElevatedButton.styleFrom(
                     minimumSize: const Size(double.maxFinite, 48.0),
